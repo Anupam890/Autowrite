@@ -1,0 +1,104 @@
+/* Background gradient animation */
+
+@keyframes gradient-hero {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient-hero {
+    background-size: 200% 200%;
+    animation: gradient-hero 10s ease infinite;
+}
+
+
+/* Hero text fade-in and up animation */
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-up {
+    animation: fade-up 1s ease forwards;
+}
+
+.animate-fade-up.delay-200 {
+    animation-delay: 0.2s;
+}
+
+
+/* Bouncing button animation */
+
+@keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+
+/* Animated background shapes */
+
+.bg-animation-shapes::before,
+.bg-animation-shapes::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+}
+
+.bg-animation-shapes::before {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    left: 25%;
+}
+
+.bg-animation-shapes::after {
+    width: 200px;
+    height: 200px;
+    bottom: 20%;
+    right: 20%;
+    animation-delay: 10s;
+}
+
+
+/* Floating animation for shapes */
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
