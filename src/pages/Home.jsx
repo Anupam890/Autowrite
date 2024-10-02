@@ -32,7 +32,7 @@ const Home = () => {
             Generate high-quality content in seconds.
           </p>
           <Link
-            to="/signup"
+            to="/dashboard"
             className="bg-[#6041FF] hover:bg-[#5036D5] py-3 px-8 rounded-full text-white font-semibold transition duration-300 animate-bounce"
           >
             Get Started
