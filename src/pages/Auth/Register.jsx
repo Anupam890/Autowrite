@@ -11,7 +11,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    const url = "http://localhost:8090/api/auth/register";
+    const url = "http://localhost:3000/api/auth/register";
 
     try {
       const response = await fetch(url, {
@@ -66,17 +66,6 @@ const Register = () => {
           <div className="form-box bg-white rounded-lg shadow-lg p-8 w-full max-w-lg mx-4 ">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Register</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="mb-4">
-                <input
-                  type="text"
-                  className="w-full p-3 border border-gray-300 rounded-lg"
-                  placeholder="Username"
-                  {...register("username", { required: "Enter Username" })}
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>
-                )}
-              </div>
               <div className="mb-4">
                 <input
                   type="text"

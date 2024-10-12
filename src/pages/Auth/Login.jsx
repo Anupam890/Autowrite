@@ -4,6 +4,7 @@ import { useState } from "react";
 import registerImg from "../../assets/registerImg.jpg";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa"; // For Google icon
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -11,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    const url = "http://localhost:8090/api/auth/login"; 
+    const url = "http://localhost:3000/api/auth/login"; 
 
     try {
       const response = await fetch(url, {
@@ -40,10 +41,13 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:3000/api/auth/google/callback"; 
+  };
+
   return (
     <>
       <div className="login-container flex flex-col lg:flex-row justify-center items-center h-screen">
-        {/* Image Section */}
         <div className="image-container w-full lg:w-1/2 h-64 lg:h-screen relative">
           <img
             src={registerImg}
@@ -56,7 +60,6 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Form Section */}
         <div className="form-section w-full lg:w-1/2 h-auto lg:h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
           <div className="form-box bg-white rounded-lg shadow-lg p-8 w-full max-w-lg mx-4">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Login</h1>
@@ -121,6 +124,16 @@ const Login = () => {
                   Register
                 </span>
               </p>
+            </div>
+
+            <div className="mt-6 text-center">
+              <button
+                onClick={handleGoogleLogin}
+                className="flex items-center justify-center w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg transition duration-300"
+              >
+                <FaGoogle className="mr-2" />
+                Continue with Google
+              </button>
             </div>
           </div>
         </div>
