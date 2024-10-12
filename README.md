@@ -3,6 +3,11 @@
 
 **AutoWrite** is an AI-powered content generation web application designed to help users effortlessly create high-quality content for various needs, such as blog posts, articles, social media, and more. With AutoWrite, you can generate, optimize, and edit your content in a matter of seconds, making writing easier than ever!
 
+
+<img width="959" alt="autowrite" src="https://github.com/user-attachments/assets/b78cadf1-3eaf-44fb-9db3-c782ed80ff98">
+
+
+
 ## Features
 
 - **AI Content Generation**: Automatically generate engaging content based on the keywords you provide.
