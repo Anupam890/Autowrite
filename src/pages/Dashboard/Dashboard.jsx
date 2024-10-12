@@ -67,7 +67,7 @@ const Dashboard = () => {
                 </li>
                 <li className={`flex items-center gap-4 py-2 px-4 rounded-md hover:bg-[#6041FF] hover:text-white ${isDarkMode ? 'text-white' : 'text-black'}`}>
                   <MdBookmarks className="text-2xl" />
-                  <Link to="">Favorites</Link>
+                  <Link to="fav">Favorites</Link>
                 </li>
               </ul>
             </div>
@@ -156,6 +156,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="dynamic-container h-screen">
+          
           <Outlet className={`${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white'}`} />
         </div>
       </div>

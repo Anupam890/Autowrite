@@ -12,6 +12,9 @@ import { Explore } from "./pages/Dashboard/childrens/Explore";
 //nested Childrens
 import Blog_title from "./pages/Dashboard/childrens/tools/BlogTools/Blog_title";
 import History from "./pages/Dashboard/childrens/History";
+import Fav from "./pages/Dashboard/childrens/Fav";
+// Dashboard Tools 
+import BlogTitle from "./pages/Dashboard/childrens/tools/BlogTools/Blog_title";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,6 +60,12 @@ const router = createBrowserRouter([
       {
         path: "history",
         element: <History />,
+      },{
+        path: "fav",
+        element: <Fav />,
+      },{
+        path: "blog-title",
+        element: <BlogTitle />,
       }
     ],
   },

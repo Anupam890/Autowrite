@@ -10,7 +10,7 @@ const Error = () => {
           alt="Error 404" 
           className="w-96 h-96 object-cover mx-auto" 
         />
-        <h1 className="text-4xl font-semibold mt-4">Page Not Found...</h1> {/* Added some margin */}
+        
       </div>
     </div>
   );
