@@ -6,6 +6,7 @@ const { errorMiddleware } = require("./middleware/errorMiddleware");
 const dotenv = require("dotenv");
 const passport = require("passport");
 const session = require('express-session');
+const aiRoute = require('./routes/contentRoute');
 dotenv.config();
 
 const app = express();
@@ -27,6 +28,7 @@ app.use(passport.session());
 const port = process.env.PORT || 3000;
 
 app.use("/api/auth", Authrouter);
+app.use('/api/ai',aiRoute)
 
 
 connectDB()
