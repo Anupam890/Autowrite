@@ -21,7 +21,15 @@ const BlogTitle = () => {
       previewStyle: "vertical",
       initialEditType: "markdown",
       hideModeSwitch: true,
+      toolbarItems: [
+        ['heading', 'bold', 'italic', 'strike'],
+        ['hr', 'quote'],
+        ['ul', 'ol', 'task'],
+        ['table', 'link', 'image'],
+        ['code', 'codeblock']
+      ],
     });
+    
 
     return () => {
       editorInstance.current.destroy();
