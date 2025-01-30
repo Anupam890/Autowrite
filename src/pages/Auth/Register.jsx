@@ -6,7 +6,11 @@ import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -56,7 +60,9 @@ const Register = () => {
             alt="Register"
           />
           <div className="absolute bottom-0 left-0 p-4">
-            <h1 className="text-3xl font-bold text-white">Get Started with Us</h1>
+            <h1 className="text-3xl font-bold text-white">
+              Get Started with Us
+            </h1>
             <p className="text-white">Start your journey today!</p>
           </div>
         </div>
@@ -64,7 +70,9 @@ const Register = () => {
         {/* Form Section */}
         <div className="form-section w-full lg:w-1/2 h-auto lg:h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
           <div className="form-box bg-white rounded-lg shadow-lg p-8 w-full max-w-lg mx-4 ">
-            <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Register</h1>
+            <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+              Register
+            </h1>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="mb-4">
                 <input
@@ -74,7 +82,9 @@ const Register = () => {
                   {...register("name", { required: "Name is required" })}
                 />
                 {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -92,7 +102,9 @@ const Register = () => {
                   })}
                 />
                 {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -113,10 +125,16 @@ const Register = () => {
                   className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
                   onClick={togglePasswordVisibility}
                 >
-                  {showPassword ? <IoIosEyeOff size={24} /> : <IoIosEye size={24} />}
+                  {showPassword ? (
+                    <IoIosEyeOff size={24} />
+                  ) : (
+                    <IoIosEye size={24} />
+                  )}
                 </div>
                 {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.password.message}
+                  </p>
                 )}
               </div>
 
