@@ -31,7 +31,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className={`container min-w-full flex relative ${isDarkMode ? 'dark-mode' : ''}`}>
+    <div className={`container min-w-full min-h-screen flex relative ${isDarkMode ? 'dark-mode' : ''}`}>
       {/* Left Sidebar */}
       <div
         className={`left ${isDarkMode ? 'bg-gray-800' : 'bg-white'} border-r-2 fixed z-10 transform ${
