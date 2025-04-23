@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import cors from "cors";
 import passport from "passport";
+import insta from "./router/ai.route.js";
 const app = express();
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/generate',insta);
 
 //Routes
 app.use("/auth", auth);

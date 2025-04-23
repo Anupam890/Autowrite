@@ -23,6 +23,16 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    avatar:{
+      type: String,
+      default: "https://res.cloudinary.com/dqj0v1x4g/image/upload/v1698236482/avatars/default-avatar.png",
+    },
+    subscription: {
+      type: String,
+      enum: ["free", "pro"],
+      default: "free",
+    }
+    ,
     googleId: String,
   },
   { timestamps: true }
