@@ -25,22 +25,6 @@
 
 ---
 
-## Tech Stack
+## Tech Stack (To be Mentioned)
 
-### Web App
-
-- Frontend: React.js, Tailwind CSS, React Router
-- Backend: Node.js, Express.js
-- Database: MongoDB
-- AI: OpenAI API, Hugging Face Transformers (planned)
-- Email: Resend SDK
-- Authentication: bcryptjs, JWT
-
-### Mobile App
-
-- Framework: React Native (Expo)
-- Navigation: React Navigation
-- API Communication: Axios
-- State Management: Context API (Redux planned)
-- AI: Connects to same backend API for generation
 
