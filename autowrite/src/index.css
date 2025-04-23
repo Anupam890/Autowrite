@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "poppins";
+    src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+    font-weight: 300;
+    font-style: normal;
+
+}
+
+body {
+    font-family: "poppins",sans-serif;
+}
