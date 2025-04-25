@@ -1,29 +1,33 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { ChatGoogleGenerativeAI } from '@langchain/google-genai';
 
-const genAI = new GoogleGenerativeAI("AIzaSyCiEz3W6Pp_gh3PBLf_l1ijaQvpyDWzYpI");
+const autowriteModel = new ChatGoogleGenerativeAI({
+  model: 'gemini-pro', 
+  temperature: 0.5,
+  maxTokens: 2000,
+  apiKey:"AIzaSyCiEz3W6Pp_gh3PBLf_l1ijaQvpyDWzYpI"
+});
 
 const instaCaption = async (req, res) => {
   const { prompt, language, category } = req.body;
-
+  if (!prompt || !language || !category) {
+    return res.status(400).json({ error: 'Missing required fields: prompt, language, or category.' });
+  }
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const response = await autowriteModel.invoke([
+      {
+        role: 'user',
+        content: `Generate 10 Instagram captions in ${language} for a ${category} category post. Prompt: ${prompt}`,
+      },
+    ]);
 
-    const result = await model.generateContent(
-      `Generate 3 short, engaging Instagram captions for the topic: "${prompt}". Language: ${language}. Category: ${category}. Include hashtags when appropriate.`
-    );
-
-    const response = await result.response;
-    const generatedText = response.text();
-
-    return res.status(200).json({
-      message: "Instagram Captions Generated",
-      data: generatedText,
-    });
+    res.status(200).json({ captions: response.content }); 
+    console.log('Response:', response.content); 
   } catch (err) {
-    console.error("Error generating captions:", err);
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error('Generation Error:', err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
-let instagram = { instaCaption };
-export default instagram;
+export const instagram = {
+  instaCaption,
+};

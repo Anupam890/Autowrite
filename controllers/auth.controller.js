@@ -94,46 +94,6 @@ const getVerifyEmail = async (req, res) => {
   res.status(200).json({ message: "Email verification endpoint coming soon!" });
 };
 
-//Third-party authentication Implementation
-const googleSignIn = async (req, res, next) => {
-  passport.use(
-    new GoogleStratergy(
-      {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.GOOGLE_CALLBACK_URL,
-      },
-      function (accessToken, refreshToken, profile, cb) {
-        console.log({ accessToken, profile });
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
-          if (err) return cb(err, null);
-          if (!user) {
-            let newUser = new User({
-              name: profile.displayName,
-              email: profile.emails[0].value,
-              googleId: profile.id,
-            });
-            newUser.save();
-            return cb(null, newUser);
-          } else {
-            return cb(null, user);
-          }
-        });
-      }
-    )
-  );
-};
-// Serializer
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
 
-// Deseralizer
-passport.deserializeUser((id, done) => {
-  User.findById(id).then((user) => {
-    done(null, user);
-  });
-});
-
-const authRoute = { registration, login, getVerifyEmail, googleSignIn };
+const authRoute = { registration, login, getVerifyEmail };
 export default authRoute;

@@ -5,7 +5,7 @@ import auth from "./router/auth.route.js";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import cors from "cors";
-import passport from "passport";
+
 import insta from "./router/ai.route.js";
 const app = express();
 
@@ -21,21 +21,8 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 30 * 60 * 60 * 1000, // 30 hours
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-    },
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use('/generate',insta);
+
+app.use("/generate", insta);
 
 //Routes
 app.use("/auth", auth);
