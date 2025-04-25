@@ -1,10 +1,9 @@
 import User from "../models/userSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { Strategy as GoogleStratergy } from "passport-google-oauth20";
-import passport from "passport";
+import * as artic from "arctic";
+import { google } from "../services/google.js";
 
-// Register Controller
 const registration = async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -46,7 +45,6 @@ const registration = async (req, res) => {
   }
 };
 
-// Login Controller
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -71,7 +69,7 @@ const login = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
-      maxAge: 30 * 60 * 60 * 1000, // 30 hours
+      maxAge: 30 * 60 * 60 * 1000,
     });
 
     return res.status(200).json({
@@ -89,11 +87,56 @@ const login = async (req, res) => {
   }
 };
 
-// Placeholder for future email verification
-const getVerifyEmail = async (req, res) => {
-  res.status(200).json({ message: "Email verification endpoint coming soon!" });
+const googleAuth = async (req, res) => {
+  if (req.user) return res.redirect("/");
+
+  const state = artic.generateState();
+  const codeVerifier = artic.generateCodeVerifier();
+
+  const COOKIE_CONFIG = {
+    httpOnly: true,
+    secure: true,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    sameSite: "lax",
+  };
+
+  res.cookie("google_state", state, COOKIE_CONFIG);
+  res.cookie("google_code_verifier", codeVerifier, COOKIE_CONFIG);
+
+  const url = google.createAuthorizationURL(state, codeVerifier, [
+    "openid",
+    "email",
+    "profile",
+  ]);
+
+  return res.redirect(url);
+};
+const googleCallback = async (req, res) => {
+  const { code, state } = req.query;
+  console.log(code, state);
+  const { google_state: storedState, google_code_verifier: codeverifier } =
+    req.cookies;
+
+  if (!code || !state || !storedState || !codeverifier) {
+    return res.status(400).json({ message: "Invalid request" });
+  }
+
+  let tokens;
+  try {
+     tokens = await google.validateAuthorizationCode(code,codeverifier);
+  } catch (error) {
+    console.error("Error exchanging code for tokens:", error);
+    return res.status(500).json({ message: "Server error" });
+    
+  }
+  const claims = decodeIdToens(tokens.idToken);
+  const { sub: googleId, email, name } = claims;
+
+  let user = await getUserWithOauthId({
+    provider:'google',
+    email
+  })
 };
 
-
-const authRoute = { registration, login, getVerifyEmail };
+const authRoute = { googleCallback, registration, login, googleAuth };
 export default authRoute;

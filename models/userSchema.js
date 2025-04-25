@@ -23,17 +23,25 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    avatar:{
+    avatar: {
       type: String,
-      default: "https://res.cloudinary.com/dqj0v1x4g/image/upload/v1698236482/avatars/default-avatar.png",
+      default:
+        "https://res.cloudinary.com/dqj0v1x4g/image/upload/v1698236482/avatars/default-avatar.png",
     },
     subscription: {
       type: String,
       enum: ["free", "pro"],
       default: "free",
-    }
-    ,
-    googleId: String,
+    },
+    googleAccountId: {
+      type: String,
+      default: null,
+    },
+    provider: {
+      type: String,
+      enum: ["local", "google"],
+      default: "local",
+    },
   },
   { timestamps: true }
 );
